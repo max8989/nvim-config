@@ -14,6 +14,7 @@ local ensure_installed = {
   "python",
   "sh",
   "toml",
+  "tsx",
   "typescript",
   "vim",
   "yaml",

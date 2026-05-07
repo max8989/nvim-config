@@ -39,3 +39,6 @@ require("diagnostic-conf")
 
 -- colorscheme settings
 require("ui")
+
+-- personal layer (keymaps + small overrides)
+require("personal")

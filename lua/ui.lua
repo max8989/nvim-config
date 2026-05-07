@@ -136,7 +136,8 @@ M.rand_colorscheme = function()
   return colorscheme
 end
 
-M.rand_colorscheme()
+-- M.rand_colorscheme()  -- jdhao default (random per launch) — disabled
+M.colorscheme_conf.kanagawa()
 
 -- enable the experiment UI
 require("vim._core.ui2").enable {

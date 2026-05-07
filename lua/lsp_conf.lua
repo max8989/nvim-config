@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         close_events = { "CursorMoved", "BufLeave", "WinLeave", "LSPDetach" },
       }
     end)
-    map("n", "<C-k>", vim.lsp.buf.signature_help)
+    -- map("n", "<C-k>", vim.lsp.buf.signature_help)  -- disabled: <C-k> reused for window-up
     map("n", "<space>rn", vim.lsp.buf.rename, { desc = "varialbe rename" })
     map("n", "<space>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
     map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { desc = "add workspace folder" })
