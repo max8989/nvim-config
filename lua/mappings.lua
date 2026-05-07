@@ -108,8 +108,9 @@ keymap.set("n", "<leader>v", "printf('`[%s`]', getregtype()[0])", {
 -- see https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
 keymap.set("n", "<leader>cd", "<cmd>lcd %:p:h<cr><cmd>pwd<cr>", { desc = "change cwd" })
 
--- Use Esc to quit builtin terminal
-keymap.set("t", "<Esc>", [[<c-\><c-n>]])
+-- (Terminal-mode <Esc> intentionally NOT mapped — it would swallow Esc inside
+-- TUIs running in :terminal/toggleterm (lazygit, lazydocker, claude, ...).
+-- Use <C-Esc> to drop to normal mode; mapping lives in lua/config/toggleterm.lua.)
 
 -- Toggle spell checking
 keymap.set("n", "<F11>", "<cmd>set spell!<cr>", { desc = "toggle spell" })

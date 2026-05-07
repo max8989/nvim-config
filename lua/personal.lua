@@ -37,7 +37,6 @@ map("n", "<leader>bd", function()
 end, { silent = true, desc = "delete buffer" })
 
 -- ─── telescope shortcuts (telescope is lazy on `cmd = "Telescope"`) ─────
-map("n", "<C-p>", "<cmd>Telescope find_files<cr>", { desc = "find files" })
 map("n", "<leader>cs", "<cmd>Telescope colorscheme enable_preview=true<cr>", { desc = "change colorscheme" })
 map("n", "<leader>ch", function()
   vim.cmd("Lazy load telescope.nvim")

@@ -1,20 +1,28 @@
-# This script is used to update Nvim on macOS
 #!/bin/bash
+# This script is used to update Nvim on macOS
 set -eux
 
-wget https://github.com/neovim/neovim/releases/download/stable/nvim-macos.tar.gz
+ARCH=$(uname -m)
+if [[ "$ARCH" == "arm64" ]]; then
+    TARBALL="nvim-macos-arm64.tar.gz"
+    NVIM_DIR="nvim-macos-arm64"
+else
+    TARBALL="nvim-macos-x86_64.tar.gz"
+    NVIM_DIR="nvim-macos-x86_64"
+fi
+
+curl -LO "https://github.com/neovim/neovim/releases/download/stable/${TARBALL}"
 
 if [[ ! -d "$HOME/tools/"  ]]; then
     mkdir -p "$HOME/tools"
 fi
 
 # Delete existing nvim installation.
-# For newer release, the directory name is nvim-macos
-if [[ -d "$HOME/tools/nvim-macos" ]]; then
-    rm -rf "$HOME/tools/nvim-macos"
+if [[ -d "$HOME/tools/${NVIM_DIR}" ]]; then
+    rm -rf "$HOME/tools/${NVIM_DIR}"
 fi
 
 # Extract the tar ball
-tar zxvf nvim-macos.tar.gz -C "$HOME/tools"
+tar zxvf "${TARBALL}" -C "$HOME/tools"
 
-rm nvim-macos.tar.gz
+rm "${TARBALL}"

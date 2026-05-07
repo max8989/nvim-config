@@ -70,10 +70,11 @@ To add a new LSP:
 | `<S-h>` / `<S-l>` | prev / next buffer (bufferline) |
 | `<leader>bd` | smart buffer delete (preserves window layout) |
 | `<C-n>` | toggle nvim-tree sidebar |
-| `<C-p>` | Telescope find files |
+| `<C-p>` | FzfLua find files (same as `<leader>ff`) |
 | `<leader>cs` | Telescope colorscheme picker (live preview) |
 | `<leader>ch` | cheatsheet picker (`cheat-sheet.md`) |
 | `<leader>gg`, `<leader>lg` | LazyGit |
+| `<leader>ld` | LazyDocker (float terminal) |
 | `<F12>`, `gD`, `gi`, `gr` | LSP go-to-{def, decl, impl, refs} |
 | `[d`, `]d` | prev / next diagnostic |
 | `<S-F12>`, `<C-F12>`, `<C-S-F12>`, `<A-F12>`, `<S-A-F12>` | VS Code-style F12 family |

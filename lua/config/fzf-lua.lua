@@ -21,6 +21,7 @@ require("fzf-lua").setup {
 }
 
 vim.keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find files" })
+vim.keymap.set("n", "<C-p>", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find files" })
 vim.keymap.set("n", "<leader>fg", "<cmd>FzfLua live_grep_native<cr>", { desc = "Fuzzy grep files" })
 vim.keymap.set(
   "n",

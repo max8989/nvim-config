@@ -120,6 +120,16 @@ local plugin_specs = {
     dependencies = {
       "nvim-telescope/telescope-symbols.nvim",
     },
+    opts = {
+      defaults = {
+        preview = {
+          -- nvim-treesitter `main` branch removed the legacy parsers API
+          -- that telescope's previewer expects (ft_to_lang). Use regex
+          -- highlighting in previews instead.
+          treesitter = false,
+        },
+      },
+    },
   },
   {
     "ibhagwan/fzf-lua",

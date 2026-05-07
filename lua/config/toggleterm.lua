@@ -60,6 +60,7 @@ end, { desc = "Decrease terminal height" })
 
 -- quick REPLs
 map("n", "<leader>tg", function() vim.cmd('TermExec cmd="lazygit" direction=float') end, { desc = "Open LazyGit in terminal" })
+map("n", "<leader>ld", function() vim.cmd('TermExec cmd="lazydocker" direction=float') end, { desc = "Open LazyDocker in terminal" })
 map("n", "<leader>tp", function() vim.cmd('TermExec cmd="python3" direction=horizontal') end, { desc = "Open Python REPL" })
 map("n", "<leader>tn", function() vim.cmd('TermExec cmd="node" direction=horizontal') end, { desc = "Open Node.js REPL" })
 
