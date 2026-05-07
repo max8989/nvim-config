@@ -829,6 +829,17 @@ local plugin_specs = {
       require("config.toggleterm")
     end,
   },
+
+  -- .NET productivity (Roslyn LSP, test runner, NuGet, EF, templates)
+  {
+    "GustavEikaas/easy-dotnet.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
+    ft = { "cs", "fsharp", "xml" },
+    cmd = { "Dotnet" },
+    config = function()
+      require("config.easy-dotnet")
+    end,
+  },
 }
 
 require("lazy").setup {
