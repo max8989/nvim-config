@@ -840,6 +840,22 @@ local plugin_specs = {
     end,
   },
 
+  {
+    "mgierada/lazydocker.nvim",
+    dependencies = { "akinsho/toggleterm.nvim" },
+    cmd = { "Lazydocker" },
+    keys = {
+      {
+        "<leader>ld",
+        function() require("lazydocker").open() end,
+        desc = "LazyDocker",
+      },
+    },
+    config = function()
+      require("lazydocker").setup { border = "curved" }
+    end,
+  },
+
   -- .NET productivity (Roslyn LSP, test runner, NuGet, EF, templates)
   {
     "GustavEikaas/easy-dotnet.nvim",
