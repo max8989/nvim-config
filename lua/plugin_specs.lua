@@ -821,6 +821,14 @@ local plugin_specs = {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
   },
+
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
+      require("config.toggleterm")
+    end,
+  },
 }
 
 require("lazy").setup {
