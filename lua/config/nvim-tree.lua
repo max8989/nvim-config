@@ -60,6 +60,11 @@ nvim_tree.setup {
     ignore = true,
     timeout = 400,
   },
+  filesystem_watchers = {
+    -- async fs_event callbacks can fire during textlock on nvim 0.12.x and
+    -- trigger E565 inside renderer/init.lua:42. Refresh manually with R.
+    enable = false,
+  },
   actions = {
     use_system_clipboard = true,
     change_dir = {
