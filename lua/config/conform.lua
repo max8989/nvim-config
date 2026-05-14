@@ -45,17 +45,10 @@ conform.setup {
   formatters = {
     oxfmt = {
       command = "oxfmt",
-      args = { "--stdin-filename", "$FILENAME" },
+      args = { "--stdin-filepath", "$FILENAME" },
       stdin = true,
     },
   },
-
-  format_on_save = function(bufnr)
-    if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-      return
-    end
-    return { timeout_ms = 1500, lsp_format = "fallback" }
-  end,
 }
 
 vim.api.nvim_create_user_command("Format", function(args)
@@ -70,28 +63,6 @@ vim.api.nvim_create_user_command("Format", function(args)
   conform.format { async = true, lsp_format = "fallback", range = range }
 end, { range = true, desc = "Format buffer or range" })
 
--- `:FormatDisable`  -> disable globally
--- `:FormatDisable!` -> disable for current buffer only
-vim.api.nvim_create_user_command("FormatDisable", function(args)
-  if args.bang then
-    vim.b.disable_autoformat = true
-  else
-    vim.g.disable_autoformat = true
-  end
-end, { bang = true, desc = "Disable format-on-save" })
-
-vim.api.nvim_create_user_command("FormatEnable", function()
-  vim.b.disable_autoformat = false
-  vim.g.disable_autoformat = false
-end, { desc = "Re-enable format-on-save" })
-
-vim.keymap.set("n", "<leader>tF", function()
-  if vim.b.disable_autoformat or vim.g.disable_autoformat then
-    vim.b.disable_autoformat = false
-    vim.g.disable_autoformat = false
-    vim.notify("Format-on-save: enabled")
-  else
-    vim.b.disable_autoformat = true
-    vim.notify("Format-on-save: disabled for this buffer")
-  end
-end, { desc = "Toggle format-on-save" })
+vim.keymap.set({ "n", "v" }, "<leader>F", function()
+  conform.format { async = true, lsp_format = "fallback" }
+end, { desc = "Format buffer / selection" })

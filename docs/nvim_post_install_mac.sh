@@ -38,6 +38,7 @@ BREW_LSP=(
 #    golangci-lint                # required by golangci-lint-langserver
     ruff                         # Python linter + LSP
     vtsls                        # TypeScript / React (.ts/.tsx/.js/.jsx)
+    oxfmt                        # JS/TS/JSON formatter (squid-frontend uses this)
 )
 
 #######################################################################

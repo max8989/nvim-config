@@ -822,8 +822,8 @@ local plugin_specs = {
   },
   {
     "stevearc/conform.nvim",
-    event = { "BufWritePre" },
-    cmd = { "Format", "FormatDisable", "FormatEnable" },
+    cmd = { "Format" },
+    keys = { { "<leader>F", mode = { "n", "v" }, desc = "Format buffer / selection" } },
     config = function()
       require("config.conform")
     end,
