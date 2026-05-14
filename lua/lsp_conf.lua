@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         close_events = { "CursorMoved", "BufLeave", "WinLeave", "LSPDetach" },
       }
     end)
-    -- map("n", "<C-k>", vim.lsp.buf.signature_help)  -- disabled: <C-k> reused for window-up
+    map({ "n", "i" }, "<C-s>", vim.lsp.buf.signature_help, { desc = "signature help" })
     map("n", "<space>rn", vim.lsp.buf.rename, { desc = "varialbe rename" })
     map("n", "<space>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
     map("n", "<space>wa", vim.lsp.buf.add_workspace_folder, { desc = "add workspace folder" })
@@ -112,6 +112,13 @@ local enabled_lsp_servers = {
   -- the server can be install via homebrew: brew install golangci-lint-langserver
   -- golangci-lint also needs to be installed: https://github.com/golangci/golangci-lint
   golangci_lint_ls = "golangci-lint-langserver",
+
+  -- TypeScript / JavaScript (works for .ts/.tsx/.js/.jsx)
+  -- install: npm install -g @vtsls/language-server
+  vtsls = "vtsls",
+  -- ESLint LSP. Only activates in projects that have an eslint config.
+  -- install: npm install -g vscode-langservers-extracted
+  eslint = "vscode-eslint-language-server",
 
   -- to install codebook, run `brew install codebook-lsp`
   -- codebook = "codebook-lsp"

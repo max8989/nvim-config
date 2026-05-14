@@ -820,6 +820,14 @@ local plugin_specs = {
       require("config.nvim-lint")
     end,
   },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "Format", "FormatDisable", "FormatEnable" },
+    config = function()
+      require("config.conform")
+    end,
+  },
 
   -- ─── personal additions ──────────────────────────────────────────────
   {

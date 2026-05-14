@@ -26,3 +26,6 @@ fi
 tar zxvf "${TARBALL}" -C "$HOME/tools"
 
 rm "${TARBALL}"
+
+# Next: run `docs/nvim_post_install_mac.sh` to install LSP servers,
+# formatters, linters, and helper CLIs.
