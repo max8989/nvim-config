@@ -67,8 +67,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- jdhao's enable loop in lsp_conf.lua handles: pyright (delance-langserver),
 -- ruff, lua_ls, vimls, bashls, yamlls, gopls, golangci_lint_ls.
 -- Below we add anything else we want, gated on system executable presence.
+-- Note: TypeScript is handled by vtsls in lsp_conf.lua. Do not enable ts_ls
+-- here too — lspconfig docs warn against running both.
 local extra_servers = {
-  ts_ls = "typescript-language-server",
   eslint = "vscode-eslint-language-server",
 }
 for server, exe in pairs(extra_servers) do
