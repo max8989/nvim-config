@@ -831,6 +831,30 @@ local plugin_specs = {
 
   -- ─── personal additions ──────────────────────────────────────────────
   {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+      "TmuxNavigatorProcessList",
+    },
+    init = function()
+      -- Suppress the plugin's built-in default mappings (which include
+      -- <C-\> → :TmuxNavigatePrevious). We bind the four we want below;
+      -- <C-\> stays free for toggleterm's open_mapping.
+      vim.g.tmux_navigator_no_mappings = 1
+    end,
+    keys = {
+      { "<c-h>", "<cmd>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd>TmuxNavigateRight<cr>" },
+    },
+  },
+
+  {
     "kdheepak/lazygit.nvim",
     cmd = { "LazyGit", "LazyGitConfig", "LazyGitCurrentFile", "LazyGitFilter", "LazyGitFilterCurrentFile" },
     dependencies = { "nvim-lua/plenary.nvim" },

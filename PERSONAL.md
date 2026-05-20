@@ -80,3 +80,25 @@ To add a new LSP:
 | `<S-F12>`, `<C-F12>`, `<C-S-F12>`, `<A-F12>`, `<S-A-F12>` | VS Code-style F12 family |
 
 See `cheat-sheet.md` for the full reference (browse with `<leader>ch`).
+
+## tmux
+
+A small tmux config lives in `tmux/` as a stow package. Uses TPM, catppuccin, and vim-tmux-navigator so `<C-h/j/k/l>` move between nvim splits and tmux panes seamlessly.
+
+```bash
+sudo pacman -S --needed tmux stow
+git clone --depth=1 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm  # one-time
+./tmux/stow.sh            # symlinks tmux/.config/tmux → ~/.config/tmux
+./tmux/stow.sh unstow     # remove the symlink
+./tmux/stow.sh simulate   # dry-run
+```
+
+Then start tmux and press `prefix I` (capital i) to install the plugins listed in `tmux.conf`.
+
+Bindings:
+
+- Prefix: `C-s`.
+- `prefix h/j/k/l` — select pane.
+- `<C-h/j/k/l>` — jump between nvim splits and tmux panes (vim-tmux-navigator; also added to nvim in `plugin_specs.lua`).
+- `prefix r` — reload `tmux.conf`.
+- vi mode-keys in copy mode.

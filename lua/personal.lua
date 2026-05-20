@@ -5,10 +5,8 @@
 local map = vim.keymap.set
 
 -- ─── window navigation ───────────────────────────────────────────────────
-map("n", "<C-h>", "<C-w>h", { desc = "win left" })
-map("n", "<C-j>", "<C-w>j", { desc = "win down" })
-map("n", "<C-k>", "<C-w>k", { desc = "win up" })
-map("n", "<C-l>", "<C-w>l", { desc = "win right" })
+-- <C-h/j/k/l> are owned by vim-tmux-navigator (see plugin_specs.lua) so the
+-- same keys move between nvim splits and tmux panes seamlessly.
 
 -- ─── buffer navigation (uses bufferline, loaded on BufEnter) ────────────
 map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { silent = true, desc = "prev buffer" })

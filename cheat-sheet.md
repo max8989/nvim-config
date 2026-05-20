@@ -172,4 +172,31 @@ Leader key: `<Space>`
 | Quickfix | `<leader>qc` | Close quickfix list |
 | Quickfix | `:cclose` / `:ccl` | Close quickfix list (command) |
 | Quickfix | `]q` | Next quickfix item |
+| tmux | `prefix` | `C-s` (then release before the next key) |
+| tmux | `prefix ?` | Built-in: list every binding (search `/`, quit `q`) |
+| tmux | `prefix r` | Reload `~/.config/tmux/tmux.conf` |
+| tmux | `<C-h/j/k/l>` | Jump between nvim splits and tmux panes (vim-tmux-navigator, no prefix) |
+| tmux | `prefix \|` | Split pane vertically (keeps cwd) |
+| tmux | `prefix -` | Split pane horizontally (keeps cwd) |
+| tmux | `prefix H/J/K/L` | Resize pane left/down/up/right (repeatable, hold the letter) |
+| tmux | `prefix z` | Zoom current pane fullscreen (toggle) |
+| tmux | `prefix x` | Kill current pane |
+| tmux | `prefix !` | Break pane into its own window |
+| tmux | `prefix { / }` | Swap pane with previous / next |
+| tmux | `prefix Space` | Cycle preset pane layouts |
+| tmux | `prefix c` | New window |
+| tmux | `prefix , / &` | Rename / kill current window |
+| tmux | `prefix n / p` | Next / previous window |
+| tmux | `prefix 0..9` | Jump to window N |
+| tmux | `prefix Tab` | Jump to last (previously active) window |
+| tmux | `prefix w` | Interactive window/session picker |
+| tmux | `prefix d` | Detach session (reattach with `tmux a`) |
+| tmux | `prefix s` | Interactive session picker |
+| tmux | `prefix $` | Rename current session |
+| tmux | `prefix [` | Enter copy mode (vi keys) |
+| tmux | copy-mode: `v` / `y` / `Esc` | Begin selection / yank / cancel |
+| tmux | `prefix ]` | Paste last copied buffer |
+| tmux | `prefix I` | TPM: install plugins listed in `tmux.conf` |
+| tmux | `prefix U` | TPM: update plugins |
+| tmux | `prefix alt-u` | TPM: uninstall plugins not in the list |
 | Quickfix | `[q` | Previous quickfix item |
