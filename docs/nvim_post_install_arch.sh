@@ -124,6 +124,20 @@ else
     echo "⚠ pipx still not available — skipping delance (pyright)."
 fi
 
+#######################################################################
+#                   pynvim venv (python3 provider)                    #
+#######################################################################
+# UltiSnips and other py3-backed plugins need the pynvim module. Arch's
+# system Python is PEP-668 externally-managed, so we keep pynvim in a
+# dedicated venv and point Neovim at it via vim.g.python3_host_prog
+# (set in lua/globals.lua).
+NVIM_PY_VENV="$HOME/.local/venv/nvim"
+if [[ ! -x "$NVIM_PY_VENV/bin/python3" ]]; then
+    echo "→ Creating pynvim venv at $NVIM_PY_VENV"
+    python3 -m venv "$NVIM_PY_VENV"
+fi
+"$NVIM_PY_VENV/bin/pip" install --quiet --upgrade pip pynvim
+
 echo ""
 echo "Finished installing post-install dependencies."
 echo "Open nvim and run :checkhealth vim.lsp to verify servers are detected."

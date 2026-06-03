@@ -136,16 +136,16 @@ keymap.set("n", "<leader>y", "<cmd>%yank<cr>", { desc = "yank entire buffer" })
 
 -- Copy current file path to system clipboard.
 keymap.set("n", "<leader>cp", function()
-  local path = vim.fn.expand("%:p")
-  vim.fn.setreg("+", path)
-  vim.notify(path, vim.log.levels.INFO, { title = "Copied path" })
-end, { desc = "copy absolute file path" })
-
-keymap.set("n", "<leader>cP", function()
   local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":.")
   vim.fn.setreg("+", path)
   vim.notify(path, vim.log.levels.INFO, { title = "Copied path" })
 end, { desc = "copy file path (relative to cwd)" })
+
+keymap.set("n", "<leader>cP", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify(path, vim.log.levels.INFO, { title = "Copied path" })
+end, { desc = "copy absolute file path" })
 
 -- Toggle cursor column
 keymap.set(

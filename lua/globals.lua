@@ -17,6 +17,13 @@ vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
 vim.g.loaded_node_provider = 0 -- Disable node provider
 vim.g.did_install_default_menus = 1 -- do not load menu
 
+-- Dedicated venv for pynvim (required by UltiSnips and other py3-backed plugins).
+-- Created by docs/nvim_post_install_{mac,arch}.sh.
+local py3_host = vim.fn.expand("~/.local/venv/nvim/bin/python3")
+if vim.fn.executable(py3_host) == 1 then
+  vim.g.python3_host_prog = py3_host
+end
+
 -- Custom mapping <leader> (see `:h mapleader` for more info)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
