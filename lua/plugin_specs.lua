@@ -898,6 +898,44 @@ local plugin_specs = {
       require("config.easy-dotnet")
     end,
   },
+
+  -- Obsidian vault: writing and navigating notes
+  {
+    "obsidian-nvim/obsidian.nvim",
+    version = "*", -- latest release; remove to track main
+    ft = "markdown",
+    cmd = "Obsidian", -- also load when running an :Obsidian command from any buffer
+    ---@module 'obsidian'
+    ---@type obsidian.config
+    opts = {
+      legacy_commands = false, -- use the new `:Obsidian <subcommand>` syntax
+      workspaces = {
+        {
+          name = "notes",
+          path = "~/Documents/notes",
+        },
+      },
+      daily_notes = {
+        enabled = true,
+        folder = "daily",
+        date_format = "%Y-%m-%d",
+        default_tags = { "daily-notes" },
+      },
+      templates = {
+        enabled = true,
+        folder = "templates",
+      },
+      link = {
+        style = "wiki", -- [[note]] style; use "markdown" for [..](..)
+        format = "shortest",
+      },
+      -- Completion is provided by the built-in obsidian-ls LSP server (picked up
+      -- by cmp-nvim-lsp), so the old completion.nvim_cmp option is no longer needed.
+      -- render-markdown.nvim already handles in-buffer rendering, so turn off
+      -- obsidian's built-in UI to avoid conflicts and silence the conceallevel warning.
+      ui = { enable = false },
+    },
+  },
 }
 
 require("lazy").setup {

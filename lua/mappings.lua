@@ -280,3 +280,11 @@ keymap.set("n", "<Esc>", function()
 end, {
   desc = "close floating win",
 })
+
+-- Obsidian (only meaningful inside the vault; commands exist after the plugin loads)
+keymap.set("n", "<leader>on", "<cmd>Obsidian new<cr>", { desc = "Obsidian new note" })
+keymap.set("n", "<leader>oo", "<cmd>Obsidian quick_switch<cr>", { desc = "Obsidian open note" })
+keymap.set("n", "<leader>od", "<cmd>Obsidian today<cr>", { desc = "Obsidian daily note" })
+keymap.set("n", "<leader>os", "<cmd>Obsidian search<cr>", { desc = "Obsidian search" })
+keymap.set("n", "<leader>ob", "<cmd>Obsidian backlinks<cr>", { desc = "Obsidian backlinks" })
+keymap.set("n", "<leader>ot", "<cmd>Obsidian template<cr>", { desc = "Obsidian insert template" })

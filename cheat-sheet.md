@@ -133,6 +133,20 @@ Leader key: `<Space>`
 | Python Debugging | `<leader>dPc` | Debug class under cursor |
 | Python | `<leader>tp` | Open Python REPL |
 | Markdown | `<leader>mp` | Toggle markdown preview |
+| Obsidian | `<leader>on` | New note |
+| Obsidian | `<leader>oo` | Quick switch (fuzzy find notes) |
+| Obsidian | `<leader>od` | Open today's daily note |
+| Obsidian | `<leader>os` | Search note contents |
+| Obsidian | `<leader>ob` | Show backlinks to current note |
+| Obsidian | `<leader>ot` | Insert template |
+| Obsidian | `:Obsidian quick_switch` | Fuzzy find notes |
+| Obsidian | `:Obsidian today [N]` | Daily note (offset N days, e.g. -1) |
+| Obsidian | `:Obsidian links` / `toc` | Links in / table of contents of note |
+| Obsidian | `:Obsidian rename` | Rename note and update references |
+| Obsidian | `:Obsidian toggle_checkbox` | Cycle checkbox state |
+| Obsidian | `:Obsidian paste_img` | Paste clipboard image into note |
+| Obsidian | `:Obsidian tags [TAG]` | Find notes by tag |
+| Obsidian | `:Obsidian check` | Health check |
 | Command Line | `:` | Enhanced command mode |
 | Cheat Sheet | `<leader>ch` | Open built-in cheatsheet |
 | Cheat Sheet | `<leader>cs` | Open this custom cheat sheet |
