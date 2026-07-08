@@ -47,6 +47,7 @@ BREW_LSP=(
 BREW_EXTRAS=(
     lazygit                      # lazygit.nvim
     lazydocker                   # lazydocker.nvim
+    hunk                         # review-first diff viewer, <leader>lh (hunk.dev)
 )
 
 for pkg in "${BREW_CORE[@]}" "${BREW_LSP[@]}" "${BREW_EXTRAS[@]}"; do
@@ -99,6 +100,16 @@ if [[ ! -x "$NVIM_PY_VENV/bin/python3" ]]; then
     python3 -m venv "$NVIM_PY_VENV"
 fi
 "$NVIM_PY_VENV/bin/pip" install --quiet --upgrade pip pynvim
+
+#######################################################################
+#                        Hunk config (theme, keys)                    #
+#######################################################################
+# Single source of truth lives in the repo at hunk/config.toml — symlink it
+# into place so `brew upgrade hunk` / editing the repo file both just work.
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+mkdir -p "$HOME/.config/hunk"
+ln -sf "$REPO_ROOT/hunk/config.toml" "$HOME/.config/hunk/config.toml"
+echo "✓ linked ~/.config/hunk/config.toml -> $REPO_ROOT/hunk/config.toml"
 
 echo ""
 echo "Finished installing post-install dependencies."

@@ -63,6 +63,10 @@ map("n", "<leader>tg", function() vim.cmd('TermExec cmd="lazygit" direction=floa
 map("n", "<leader>tp", function() vim.cmd('TermExec cmd="python3" direction=horizontal') end, { desc = "Open Python REPL" })
 map("n", "<leader>tn", function() vim.cmd('TermExec cmd="node" direction=horizontal') end, { desc = "Open Node.js REPL" })
 
+-- Hunk (review-first terminal diff viewer, https://hunk.dev) — same <leader>l
+-- group as lazygit (lg) / lazydocker (ld).
+map("n", "<leader>lh", function() vim.cmd('7TermExec cmd="hunk diff" direction=float') end, { desc = "Open Hunk diff review" })
+
 -- kill all terminals (fixed: original used `TermClose!` which isn't a real command)
 map("n", "<leader>tk", function()
   for _, term in pairs(require("toggleterm.terminal").get_all()) do

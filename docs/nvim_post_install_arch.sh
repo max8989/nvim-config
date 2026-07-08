@@ -101,6 +101,7 @@ NPM_GLOBALS=(
     prettier                     # conform.nvim formatter
     "@fsouza/prettierd"          # faster prettier daemon (preferred by conform)
     oxfmt                        # JS/TS/JSON formatter (squid-frontend uses this)
+    hunkdiff                     # hunk review-first diff viewer, <leader>lh (not packaged for pacman/AUR)
 )
 
 for pkg in "${NPM_GLOBALS[@]}"; do
@@ -137,6 +138,16 @@ if [[ ! -x "$NVIM_PY_VENV/bin/python3" ]]; then
     python3 -m venv "$NVIM_PY_VENV"
 fi
 "$NVIM_PY_VENV/bin/pip" install --quiet --upgrade pip pynvim
+
+#######################################################################
+#                        Hunk config (theme, keys)                    #
+#######################################################################
+# Single source of truth lives in the repo at hunk/config.toml — symlink it
+# into place so editing the repo file is all that's needed to update it.
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+mkdir -p "$HOME/.config/hunk"
+ln -sf "$REPO_ROOT/hunk/config.toml" "$HOME/.config/hunk/config.toml"
+echo "✓ linked ~/.config/hunk/config.toml -> $REPO_ROOT/hunk/config.toml"
 
 echo ""
 echo "Finished installing post-install dependencies."

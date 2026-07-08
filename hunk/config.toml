@@ -1,0 +1,28 @@
+theme = "custom"    # any built-in theme id, auto, or custom
+mode = "auto"        # auto, split, stack
+vcs = "git"          # git, jj, sl
+watch = false
+exclude_untracked = false
+line_numbers = true
+wrap_lines = false
+menu_bar = true
+agent_notes = false
+transparent_background = false
+
+# Palette pulled from rockyzhang24/arctic.nvim (this repo's pinned colorscheme,
+# lua/ui.lua:140), so hunk's diff colors line up with what you see in nvim.
+# Deployed to ~/.config/hunk/config.toml by docs/nvim_post_install_mac.sh /
+# docs/nvim_post_install_arch.sh — edit this file, not the deployed copy.
+[custom_theme]
+base = "github-dark-default"
+label = "Arctic"
+accent = "#569cd6"      # blue
+panel = "#1f1f1f"       # bg
+noteBorder = "#c586c0"  # magenta
+
+[custom_theme.syntax]
+keyword = "#569cd6"     # blue
+string = "#d7ba7d"      # yellow
+comment = "#808080"     # bright black
+operator = "#4dc9b0"    # cyan
+variable = "#cccccc"    # fg
