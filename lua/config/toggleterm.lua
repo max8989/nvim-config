@@ -14,7 +14,7 @@ require("toggleterm").setup {
   on_exit = function()
     vim.cmd("checktime")
   end,
-  shell = vim.fn.has("win32") == 1 and "powershell" or vim.o.shell,
+  shell = vim.fn.has("win32") == 1 and "powershell" or "zsh",
   float_opts = {
     border = "curved",
     winblend = 0,
