@@ -911,19 +911,23 @@ local plugin_specs = {
       legacy_commands = false, -- use the new `:Obsidian <subcommand>` syntax
       workspaces = {
         {
-          name = "notes",
-          path = "~/Documents/notes",
+          name = "obsidian",
+          path = "~/Documents/obsidian",
         },
       },
       daily_notes = {
         enabled = true,
-        folder = "daily",
-        date_format = "%Y-%m-%d",
+        folder = "40 Daily",
+        date_format = "YYYY/MM/YYYY-MM-DD",
+        template = "Daily",
         default_tags = { "daily-notes" },
       },
       templates = {
         enabled = true,
-        folder = "templates",
+        folder = "Templates",
+      },
+      attachments = {
+        folder = "Assets",
       },
       link = {
         style = "wiki", -- [[note]] style; use "markdown" for [..](..)
