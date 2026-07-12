@@ -1,14 +1,17 @@
 local utils = require("utils")
 
-local config_path = vim.fn.stdpath("config")
-local python3_path = vim.fs.joinpath(config_path, ".venv/bin/python3")
-if not vim.uv.fs_stat(python3_path) then
-  local msg = string.format(
-    "Python provider missing:\n  create a virtual env under nvim config and install pynvim!"
-  )
-  vim.api.nvim_echo({ { msg } }, true, { err = true })
+-- Python provider: prefer our dedicated pynvim venv (created by
+-- docs/nvim_post_install_{mac,arch}.sh), fall back to upstream's
+-- .venv under the config dir.
+local py3_host = vim.fn.expand("~/.local/venv/nvim/bin/python3")
+local config_venv_py3 = vim.fs.joinpath(vim.fn.stdpath("config"), ".venv/bin/python3")
+if vim.fn.executable(py3_host) == 1 then
+  vim.g.python3_host_prog = py3_host
+elseif vim.uv.fs_stat(config_venv_py3) then
+  vim.g.python3_host_prog = config_venv_py3
 else
-  vim.g.python3_host_prog = python3_path
+  local msg = "Python provider missing:\n  create a virtual env under nvim config and install pynvim!"
+  vim.api.nvim_echo({ { msg } }, true, { err = true })
 end
 
 ------------------------------------------------------------------------
@@ -27,13 +30,6 @@ vim.g.loaded_perl_provider = 0 -- Disable perl provider
 vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
 vim.g.loaded_node_provider = 0 -- Disable node provider
 vim.g.did_install_default_menus = 1 -- do not load menu
-
--- Dedicated venv for pynvim (required by UltiSnips and other py3-backed plugins).
--- Created by docs/nvim_post_install_{mac,arch}.sh.
-local py3_host = vim.fn.expand("~/.local/venv/nvim/bin/python3")
-if vim.fn.executable(py3_host) == 1 then
-  vim.g.python3_host_prog = py3_host
-end
 
 -- Custom mapping <leader> (see `:h mapleader` for more info)
 vim.g.mapleader = " "

@@ -107,10 +107,10 @@ local enabled_lsp_servers = {
 
   -- TypeScript / JavaScript (works for .ts/.tsx/.js/.jsx)
   -- install: npm install -g @vtsls/language-server
-  vtsls = "vtsls",
+  vtsls = { exe = "vtsls", optional = false },
   -- ESLint LSP. Only activates in projects that have an eslint config.
   -- install: npm install -g vscode-langservers-extracted
-  eslint = "vscode-eslint-language-server",
+  eslint = { exe = "vscode-eslint-language-server", optional = false },
 
   -- to install codebook, run `brew install codebook-lsp`
   -- codebook = { exe = "codebook-lsp", optional = true },
