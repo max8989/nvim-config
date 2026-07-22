@@ -887,7 +887,6 @@ local plugin_specs = {
   {
     "GustavEikaas/easy-dotnet.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
-    ft = { "cs", "fsharp", "xml" },
     cmd = { "Dotnet" },
     config = function()
       require("config.easy-dotnet")

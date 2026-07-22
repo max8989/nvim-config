@@ -3,9 +3,17 @@ require("easy-dotnet").setup {
 
   lsp = {
     enabled = true,        -- Roslyn LSP starts automatically
-    preload_roslyn = true, -- preload before any buffer opens
+    preload_roslyn = false,
     roslynator_enabled = true,
-    auto_refresh_codelens = true,
+    auto_refresh_codelens = false,
+    config = {
+      settings = {
+        ["csharp|background_analysis"] = {
+          dotnet_analyzer_diagnostics_scope = "openFiles",
+          dotnet_compiler_diagnostics_scope = "openFiles",
+        },
+      },
+    },
   },
 
   debugger = {
@@ -14,7 +22,7 @@ require("easy-dotnet").setup {
   },
 
   test_runner = {
-    auto_start_testrunner = true,
+    auto_start_testrunner = false,
     viewmode = "float", -- "split" | "vsplit" | "float" | "buf"
   },
 

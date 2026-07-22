@@ -175,6 +175,17 @@ Leader key: `<Space>`
 | Git | `<leader>gD` | Diff against HEAD~ |
 | Git | `<leader>gt` | Toggle deleted lines |
 | Git | `ig` | Select git hunk (visual/operator mode) |
+| Git Worktree (LazyGit) | Select base branch, then `w` | Open the worktree action menu |
+| Git Worktree (LazyGit) | `b` | Create a new branch and worktree from the selected branch |
+| Git Worktree (LazyGit) | `w` | Create a worktree for the selected existing branch |
+| Git Worktree (LazyGit) | `agent/story-2` | Name the new dedicated agent branch |
+| Git Worktree (LazyGit) | `../repo-agent-2` | Use a sibling directory when prompted for the worktree path |
+| Git Worktree (terminal) | `git worktree add -b agent/story-2 ../repo-agent-2 HEAD` | Create a worktree and branch from the current commit |
+| Git Worktree (agent) | `cd ../repo-agent-2 && claude` | Start the other agent inside its worktree |
+| Git Worktree (handoff) | `git merge agent/story-2` | Merge the agent's committed branch from the main worktree |
+| Git Worktree (handoff) | `git cherry-pick <commit>` | Alternatively apply only a specific agent commit |
+| Git Worktree (cleanup) | `git worktree remove ../repo-agent-2` | Remove the worktree after its work is merged |
+| Git Worktree (cleanup) | `git branch -d agent/story-2` | Delete the merged agent branch |
 | Git Graph (in graph buffer) | `<CR>` | View commit diff (press Enter) |
 | Git Graph (in graph buffer) | `V` then `<CR>` | View range diff (visual select + Enter) |
 | Diffview | `:DiffviewClose` | Close diffview pane |
