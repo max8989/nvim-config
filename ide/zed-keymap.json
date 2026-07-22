@@ -1,0 +1,92 @@
+[
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      ";": ["workspace::SendKeystrokes", ":"],
+      "shift-h": ["workspace::SendKeystrokes", "^"],
+      "shift-l": ["workspace::SendKeystrokes", "g _"],
+      "left": "workspace::ActivatePaneLeft",
+      "right": "workspace::ActivatePaneRight",
+      "up": "workspace::ActivatePaneUp",
+      "down": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      "j": ["workspace::SendKeystrokes", "g j"],
+      "k": ["workspace::SendKeystrokes", "g k"],
+      "0": ["workspace::SendKeystrokes", "g 0"],
+      "^": ["workspace::SendKeystrokes", "g ^"],
+
+      "space w": "workspace::Save",
+      "space q": "pane::CloseActiveItem",
+      "space shift-q": "workspace::CloseAllItemsAndPanes",
+      "\\ d b": "pane::CloseActiveItem",
+      "\\ d shift-b": "pane::CloseOtherItems",
+
+      "g b": "pane::ActivateNextItem",
+      "g shift-b": "pane::ActivatePreviousItem",
+
+      "space c p": "workspace::CopyRelativePath",
+      "space c shift-p": "workspace::CopyPath",
+      "space y": ["workspace::SendKeystrokes", "% y"],
+      "space v": ["workspace::SendKeystrokes", "` [ v ` ]"],
+
+      "alt-k": "editor::MoveLineUp",
+      "alt-j": "editor::MoveLineDown",
+      "shift-j": ["workspace::SendKeystrokes", "m z shift-j ` z"],
+      "g shift-j": ["workspace::SendKeystrokes", "m z g shift-j ` z"],
+
+      "space r n": "editor::Rename",
+      "space c a": "editor::ToggleCodeActions",
+      "space g d": "editor::GoToDefinition",
+      "space g i": "editor::GoToImplementation",
+      "space g y": "editor::GoToTypeDefinition",
+      "shift-k": "editor::Hover",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic",
+
+      "space f f": "file_finder::Toggle",
+      "ctrl-p": "file_finder::Toggle",
+      "space f g": "project_search::ToggleFocus",
+      "space s": "project_panel::ToggleFocus",
+      "ctrl-`": "terminal_panel::ToggleFocus",
+      "space shift-f": "editor::Format",
+
+      "q": "zed::NoAction",
+      "shift-q": ["workspace::SendKeystrokes", "q"]
+    }
+  },
+  {
+    "context": "vim_mode == visual && !menu",
+    "bindings": {
+      "$": ["workspace::SendKeystrokes", "g _"],
+      "<": ["workspace::SendKeystrokes", "< g v"],
+      ">": ["workspace::SendKeystrokes", "> g v"],
+      "p": ["workspace::SendKeystrokes", "\" _ c escape p"],
+      "alt-k": "editor::MoveLineUp",
+      "alt-j": "editor::MoveLineDown",
+      "space shift-f": "editor::FormatSelections"
+    }
+  },
+  {
+    "context": "vim_mode == insert && !menu",
+    "bindings": {
+      "ctrl-u": ["workspace::SendKeystrokes", "escape v i w shift-u e a"],
+      "ctrl-t": ["workspace::SendKeystrokes", "escape b ~ l e a"],
+      "ctrl-a": "editor::MoveToBeginningOfLine",
+      "ctrl-e": "editor::MoveToEndOfLine",
+      "ctrl-d": "editor::Delete"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w j": "workspace::ActivatePaneDown"
+    }
+  }
+]

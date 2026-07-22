@@ -1,0 +1,38 @@
+{
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "vim_mode": true,
+  "base_keymap": "VSCode",
+  "ui_font_size": 14,
+  "buffer_font_size": 13,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
+  "tab_size": 2,
+  "hard_tabs": false,
+  "relative_line_numbers": "enabled",
+  "soft_wrap": "editor_width",
+  "show_whitespaces": "all",
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "pane_split_direction_horizontal": "down",
+  "pane_split_direction_vertical": "right",
+  "project_panel": {
+    "dock": "left"
+  },
+  "vim": {
+    "default_mode": "normal",
+    "use_system_clipboard": "always",
+    "use_smartcase_find": true,
+    "use_regex_search": true,
+    "toggle_relative_line_numbers": false,
+    "highlight_on_yank_duration": 200
+  },
+  "command_aliases": {
+    "crp": "workspace::CopyRelativePath",
+    "cpp": "workspace::CopyPath"
+  }
+}

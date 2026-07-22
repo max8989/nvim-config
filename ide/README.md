@@ -1,7 +1,7 @@
 # IDE Vim configs
 
 Ports the portable keybindings from this nvim-config (`lua/mappings.lua`) to the
-Vim emulation plugins in Rider/JetBrains and VS Code.
+Vim emulation layers in Rider/JetBrains, VS Code, and Zed.
 
 Leader = `<space>`, local-leader = `\`.
 
@@ -27,6 +27,32 @@ Leader = `<space>`, local-leader = `\`.
    into your `settings.json` (combine the `vim.*` keys; don't paste a second top-level object).
 4. Find command ids in the **Keyboard Shortcuts** UI (gear → *Copy Command ID*).
 
+## Zed
+
+Zed has Vim emulation built in, so no extension is required.
+
+1. Merge [`zed-settings.json`](./zed-settings.json) into
+   `~/.config/zed/settings.json`. The snippet enables Vim mode and mirrors the
+   core indentation, wrapping, clipboard, whitespace, split, and line-number
+   options from this config.
+2. Copy [`zed-keymap.json`](./zed-keymap.json) to
+   `~/.config/zed/keymap.json`. If you already have a keymap, merge the objects
+   inside the top-level array instead.
+3. Reload Zed (`zed: reload` in the command palette).
+
+For symlinked dotfiles (only when these Zed files are your complete configs):
+
+```sh
+mkdir -p ~/.config/zed
+ln -sf ~/repos/nvim-config/ide/zed-settings.json ~/.config/zed/settings.json
+ln -sf ~/repos/nvim-config/ide/zed-keymap.json ~/.config/zed/keymap.json
+```
+
+Zed already supplies native Vim bindings for motions, operators, registers,
+macros, search, surround, comments, and common LSP navigation. The custom
+keymap adds this config's leader mappings, wrapped-line movement, pane arrows,
+tab navigation, no-yank visual paste, line movement, and `q`/`Q` macro swap.
+
 ## What does NOT port
 
 These are nvim/plugin-specific and have no clean emulation equivalent — handle them
@@ -38,3 +64,5 @@ with native IDE features instead:
 - `<leader>cd` change-cwd, `<leader>cb`/`<leader>cl` cursor blink/column, `F11` spell toggle.
 - Obsidian (`<leader>o*`) — nvim plugin only.
 - `<Esc>` close-floating-window and `ZR` restart — editor-specific.
+- Zed cannot exactly reproduce change-without-yank (`c`, `C`, `cc`) or the
+  custom URL/buffer text objects through a simple keymap.
