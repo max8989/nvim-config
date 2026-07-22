@@ -1,0 +1,153 @@
+" ~/.ideavimrc  — IdeaVim config for Rider (and other JetBrains IDEs)
+" Ports the portable keybindings from this nvim-config (lua/mappings.lua).
+" Symlink or copy to ~/.ideavimrc:
+"   ln -sf ~/repos/nvim-config/ide/.ideavimrc ~/.ideavimrc
+"
+" Notes:
+" - IDE-action keys use <Action>(id). <Action> mappings do NOT work with *noremap*,
+"   so they use `map`/`nmap`/`vmap`.
+" - Discover action ids with `:actionlist <pattern>` or the
+"   "IdeaVim: track action IDs" command (double-Shift -> search).
+
+let mapleader = " "
+let maplocalleader = "\\"
+
+""" Idea-specific settings ------------------
+set ideajoin                 " use IDE smart-join for J / gJ
+set ideastatusicon=gray
+set idearefactormode=keep
+set clipboard^=unnamed,unnamedplus  " yank/delete -> system clipboard (* and + regs)
+set clipboard+=ideaput              " native IDE paste
+set scrolloff=3
+set incsearch
+set ignorecase
+set smartcase
+
+""" Emulated plugins -----------------------
+set surround                 " vim-surround
+set commentary               " gc comment toggle
+set textobj-entire           " ae / ie  (entire buffer text object)
+set ReplaceWithRegister
+set easymotion               " <leader><leader>... hop-like motions (needs AceJump plugin)
+set NERDTree                 " file tree via vim keys
+set highlightedyank
+
+""" Save keystrokes: ; acts as : ----------
+nnoremap ; :
+xnoremap ; :
+
+""" Faster save / quit ---------------------
+nmap <leader>w <Action>(SaveAll)
+nmap <leader>q <Action>(CloseContent)
+nmap <leader>Q <Action>(CloseAllEditors)
+
+""" Buffers / tabs (gb/gB + <leader> close) -
+nmap gb <Action>(NextTab)
+nmap gB <Action>(PreviousTab)
+nmap \db <Action>(CloseContent)
+nmap \dB <Action>(CloseAllEditorsButActive)
+
+""" Physical-line motion -------------------
+nnoremap j gj
+nnoremap k gk
+nnoremap ^ g^
+nnoremap 0 g0
+xnoremap $ g_
+
+""" Start / end of line --------------------
+nnoremap H ^
+nnoremap L g_
+xnoremap H ^
+xnoremap L g_
+
+""" Continuous visual shifting -------------
+xnoremap < <gv
+xnoremap > >gv
+
+""" Window navigation with arrows ----------
+nnoremap <Left>  <C-w>h
+nnoremap <Right> <C-w>l
+nnoremap <Up>    <C-w>k
+nnoremap <Down>  <C-w>j
+
+""" Paste helpers --------------------------
+" paste below / above current line, keep cursor
+nnoremap <leader>p m`o<Esc>p``
+nnoremap <leader>P m`O<Esc>p``
+" reselect last pasted region
+nnoremap <leader>v `[v`]
+" visual paste without clobbering register
+xnoremap p "_c<Esc>p
+
+""" Change without yanking -----------------
+nnoremap c "_c
+nnoremap C "_C
+nnoremap cc "_cc
+xnoremap c "_c
+
+""" Move lines / selections up & down ------
+nmap <A-k> <Action>(MoveLineUp)
+nmap <A-j> <Action>(MoveLineDown)
+vmap <A-k> <Action>(MoveLineUp)
+vmap <A-j> <Action>(MoveLineDown)
+
+""" Join lines without moving cursor -------
+nnoremap J mzJ`z
+nnoremap gJ mzgJ`z
+
+""" Yank entire buffer ---------------------
+nnoremap <leader>y :%y<CR>
+
+""" Copy file path -------------------------
+nmap <leader>cp <Action>(CopyContentRootPath)
+nmap <leader>cP <Action>(CopyAbsolutePath)
+
+""" Strip trailing whitespace --------------
+" no native action; fall back to a substitute
+nnoremap <leader><Space> :%s/\s\+$//e<CR>
+
+""" Insert-mode shortcuts ------------------
+inoremap <C-u> <Esc>viwUea
+inoremap <C-t> <Esc>b~lea
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-d> <Del>
+inoremap <A-;> <Esc>miA;<Esc>`ii
+cnoremap <C-a> <Home>
+
+""" Macro keys: q disabled, Q records ------
+nnoremap q <Nop>
+nnoremap Q q
+
+""" LSP / code navigation ------------------
+" From lua/lsp_conf.lua + Rider equivalents.
+" Plain g-prefix (nvim: gd):
+nmap gd <Action>(GotoDeclaration)
+nmap <C-]> <Action>(GotoDeclaration)
+" <leader>g group (space g <key>):
+nmap <leader>gd <Action>(GotoDeclaration)
+nmap <leader>gi <Action>(GotoImplementation)
+nmap <leader>gr <Action>(FindUsages)
+nmap <leader>gy <Action>(GotoTypeDeclaration)
+nmap <leader>gs <Action>(GotoSuperMethod)
+
+""" Fuzzy finder (from lua/config/fzf-lua.lua) -----
+nmap <leader>ff <Action>(GotoFile)
+nmap <C-p>      <Action>(GotoFile)
+nmap <leader>fg <Action>(FindInPath)
+nmap <leader>fb <Action>(RecentFiles)
+nmap <leader>fr <Action>(RecentFiles)
+nmap <leader>ft <Action>(FileStructurePopup)
+nmap K <Action>(QuickJavaDoc)
+nmap <C-s> <Action>(ParameterInfo)
+imap <C-s> <Action>(ParameterInfo)
+nmap <leader>rn <Action>(RenameElement)
+nmap <leader>ca <Action>(ShowIntentionActions)
+" diagnostics navigation
+nmap ]d <Action>(GotoNextError)
+nmap [d <Action>(GotoPreviousError)
+nmap <leader>qw <Action>(ActivateProblemsViewToolWindow)
+
+""" Let a few Ctrl keys reach the IDE ------
+sethandler <C-c> a:ide
+sethandler <C-v> a:ide

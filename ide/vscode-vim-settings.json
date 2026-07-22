@@ -1,0 +1,126 @@
+{
+  // VSCodeVim config — ports the portable keybindings from this nvim-config
+  // (lua/mappings.lua). Merge these keys into your VS Code settings.json
+  // (Cmd+Shift+P -> "Preferences: Open User Settings (JSON)").
+  //
+  // Install the "Vim" extension (vscodevim.vim) first.
+  // Action keys use VS Code command ids; find more via the Keyboard Shortcuts UI.
+
+  "vim.leader": "<space>",
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.ignorecase": true,
+  "vim.smartcase": true,
+  "vim.easymotion": true,
+  "vim.surround": true,
+
+  // keep these Ctrl chords for VS Code, not Vim
+  "vim.handleKeys": {
+    "<C-c>": false,
+    "<C-v>": false
+  },
+
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // ; acts as :
+    { "before": [";"], "after": [":"] },
+
+    // save / quit
+    { "before": ["<leader>", "w"], "commands": ["workbench.action.files.save"] },
+    { "before": ["<leader>", "q"], "commands": ["workbench.action.closeActiveEditor"] },
+    { "before": ["<leader>", "Q"], "commands": ["workbench.action.closeAllEditors"] },
+
+    // LSP / code navigation (from lua/lsp_conf.lua + extras)
+    { "before": ["g", "d"], "commands": ["editor.action.revealDefinition"] },
+    { "before": ["<leader>", "g", "d"], "commands": ["editor.action.revealDefinition"] },
+    { "before": ["<leader>", "g", "i"], "commands": ["editor.action.goToImplementation"] },
+    { "before": ["<leader>", "g", "r"], "commands": ["editor.action.goToReferences"] },
+    { "before": ["<leader>", "g", "y"], "commands": ["editor.action.goToTypeDefinition"] },
+    { "before": ["K"], "commands": ["editor.action.showHover"] },
+    { "before": ["<leader>", "r", "n"], "commands": ["editor.action.rename"] },
+    { "before": ["<leader>", "c", "a"], "commands": ["editor.action.quickFix"] },
+    { "before": ["]", "d"], "commands": ["editor.action.marker.next"] },
+    { "before": ["[", "d"], "commands": ["editor.action.marker.prev"] },
+
+    // buffers / tabs
+    { "before": ["g", "b"], "commands": ["workbench.action.nextEditor"] },
+    { "before": ["g", "B"], "commands": ["workbench.action.previousEditor"] },
+    { "before": ["\\", "d", "b"], "commands": ["workbench.action.closeActiveEditor"] },
+    { "before": ["\\", "d", "B"], "commands": ["workbench.action.closeOtherEditors"] },
+
+    // physical-line motion
+    { "before": ["j"], "after": ["g", "j"] },
+    { "before": ["k"], "after": ["g", "k"] },
+    { "before": ["^"], "after": ["g", "^"] },
+    { "before": ["0"], "after": ["g", "0"] },
+
+    // line start / end
+    { "before": ["H"], "after": ["^"] },
+    { "before": ["L"], "after": ["g", "_"] },
+
+    // window navigation with arrows
+    { "before": ["<left>"], "after": ["<C-w>", "h"] },
+    { "before": ["<right>"], "after": ["<C-w>", "l"] },
+    { "before": ["<up>"], "after": ["<C-w>", "k"] },
+    { "before": ["<down>"], "after": ["<C-w>", "j"] },
+
+    // paste below / above current line, keep cursor
+    { "before": ["<leader>", "p"], "after": ["m", "`", "o", "<Esc>", "p", "`", "`"] },
+    { "before": ["<leader>", "P"], "after": ["m", "`", "O", "<Esc>", "p", "`", "`"] },
+    // reselect last pasted region
+    { "before": ["<leader>", "v"], "after": ["`", "[", "v", "`", "]"] },
+
+    // change without yanking
+    { "before": ["c"], "after": ["\"", "_", "c"] },
+    { "before": ["C"], "after": ["\"", "_", "C"] },
+    { "before": ["c", "c"], "after": ["\"", "_", "c", "c"] },
+
+    // move lines up / down
+    { "before": ["<A-k>"], "commands": ["editor.action.moveLinesUpAction"] },
+    { "before": ["<A-j>"], "commands": ["editor.action.moveLinesDownAction"] },
+
+    // join without moving cursor
+    { "before": ["J"], "after": ["m", "z", "J", "`", "z"] },
+    { "before": ["g", "J"], "after": ["m", "z", "g", "J", "`", "z"] },
+
+    // yank entire buffer
+    { "before": ["<leader>", "y"], "commands": ["editor.action.selectAll", "editor.action.clipboardCopyAction"] },
+
+    // copy file path
+    { "before": ["<leader>", "c", "p"], "commands": ["copyRelativeFilePath"] },
+    { "before": ["<leader>", "c", "P"], "commands": ["copyFilePath"] },
+
+    // strip trailing whitespace
+    { "before": ["<leader>", "<space>"], "commands": ["editor.action.trimTrailingWhitespace"] },
+
+    // macro keys: q disabled, Q records
+    { "before": ["q"], "after": ["<Nop>"] },
+    { "before": ["Q"], "after": ["q"] }
+  ],
+
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": [";"], "after": [":"] },
+    { "before": ["$"], "after": ["g", "_"] },
+    { "before": ["H"], "after": ["^"] },
+    { "before": ["L"], "after": ["g", "_"] },
+    // continuous shifting (VSCodeVim keeps selection automatically)
+    { "before": ["<"], "after": ["<", "g", "v"] },
+    { "before": [">"], "after": [">", "g", "v"] },
+    // change without yanking
+    { "before": ["c"], "after": ["\"", "_", "c"] },
+    // paste without clobbering register
+    { "before": ["p"], "after": ["\"", "_", "c", "<Esc>", "p"] },
+    // move selection up / down
+    { "before": ["<A-k>"], "commands": ["editor.action.moveLinesUpAction"] },
+    { "before": ["<A-j>"], "commands": ["editor.action.moveLinesDownAction"] }
+  ],
+
+  "vim.insertModeKeyBindingsNonRecursive": [
+    { "before": ["<C-u>"], "after": ["<Esc>", "v", "i", "w", "U", "e", "a"] },
+    { "before": ["<C-t>"], "after": ["<Esc>", "b", "~", "l", "e", "a"] },
+    { "before": ["<C-a>"], "after": ["<Home>"] },
+    { "before": ["<C-e>"], "after": ["<End>"] },
+    { "before": ["<C-d>"], "after": ["<Del>"] }
+  ]
+}
